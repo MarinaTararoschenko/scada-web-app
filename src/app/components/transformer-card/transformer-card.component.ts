@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 
-import { ScadaDataService } from '../../services/scada-data.service';
-import { AlarmId } from '../../models/scada.model';
+import { ScadaDataService } from '@services/scada-data.service';
+import { AlarmId } from '@models/scada.model';
 
 @Component({
     selector: 'app-transformer-card',

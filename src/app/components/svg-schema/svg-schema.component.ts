@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { AlarmId } from '../../models/scada.model';
-import { TransformerWidgetComponent } from '../transformer-widget/transformer-widget.component';
+import { AlarmId } from '@models/scada.model';
+import { TransformerWidgetComponent } from '@components/transformer-widget/transformer-widget.component';
 
 @Component({
     selector: 'app-svg-schema',

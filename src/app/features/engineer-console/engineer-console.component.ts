@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 
-import { ScadaDataService } from '../../services/scada-data.service';
-import { AlarmId } from '../../models/scada.model';
-import { SvgSchemaComponent } from '../../components/svg-schema/svg-schema.component';
-import { TransformerCardComponent } from '../../components/transformer-card/transformer-card.component';
-import { AlarmPanelComponent } from '../../components/alarm-panel/alarm-panel.component';
+import { ScadaDataService } from '@services/scada-data.service';
+import { AlarmId } from '@models/scada.model';
+import { SvgSchemaComponent } from '@components/svg-schema/svg-schema.component';
+import { TransformerCardComponent } from '@components/transformer-card/transformer-card.component';
+import { AlarmPanelComponent } from '@components/alarm-panel/alarm-panel.component';
 
 @Component({
     selector: 'app-engineer-console',

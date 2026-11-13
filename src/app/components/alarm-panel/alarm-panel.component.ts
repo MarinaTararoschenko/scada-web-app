@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
-import { Alarm, AlarmId } from '../../models/scada.model';
+import { Alarm, AlarmId } from '@models/scada.model';
 
 @Component({
     selector: 'app-alarm-panel',

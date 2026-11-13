@@ -5,7 +5,7 @@ export const routes: Routes = [
     {
         path: 'engineer-console',
         loadComponent: () =>
-        import('./components/engineer-console/engineer-console.component').then(
+        import('./features/engineer-console/engineer-console.component').then(
             (m) => m.EngineerConsoleComponent
         ),
     },
