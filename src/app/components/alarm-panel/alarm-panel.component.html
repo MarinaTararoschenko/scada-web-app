@@ -1,0 +1,33 @@
+@if (alarms().length > 0) {
+  <div class="alarm__container">
+    <h3 class="alarm__header">🚨 Активные алармы ({{ alarms().length }})</h3>
+
+    <div class="alarm__list">
+      @for (alarm of alarms(); track alarm.id + alarm.deviceId) {
+        <div class="alarm__item"
+          [style.border-color]="alarm.isActive ? (alarm.severity === 'critical' ? '#ff5252' : '#ffeb3b') : '#777'">
+
+          <div>
+            <span class="alarm__severity"
+              [style.color]="alarm.isActive ? (alarm.severity === 'critical' ? '#ff5252' : '#ffeb3b') : '#aaa'">
+              @if (alarm.isActive) {
+                {{ alarm.severity === 'critical' ? 'КРИТИЧЕСКАЯ' : 'ПРЕДУПРЕЖДЕНИЕ' }}
+              } @else {
+                [ПРОШЛА]
+              }
+            </span>
+            — {{ alarm.message }}
+          </div>
+
+          @if (!alarm.isAcknowledged) {
+            <button class="ackBtn" (click)="acknowledge.emit({ id: alarm.id, deviceId: alarm.deviceId })">
+              Принять
+            </button>
+          } @else {
+            <span class="ackText">✓ Принято</span>
+          }
+        </div>
+      }
+    </div>
+  </div>
+}

@@ -1,0 +1,30 @@
+<div class="schema-container">
+  <h3>Мнемосхема подстанции</h3>
+  <svg viewBox="0 0 800 350" width="100%" height="350" xmlns="http://www.w3.org/2000/svg">
+    <line x1="50" y1="50" x2="50" y2="250" stroke="#777" stroke-width="6" />
+    <text x="20" y="160" fill="#777" transform="rotate(-90 20,160)">Шина 10кВ</text>
+
+    <line x1="750" y1="50" x2="750" y2="250" stroke="#777" stroke-width="6" />
+    <text x="760" y="160" fill="#777" transform="rotate(90 760,160)">Шина 0.4кВ</text>
+
+    <line x1="50" y1="200" x2="750" y2="200" stroke="#4caf50" stroke-width="4" />
+
+    <g app-transformer-widget
+       deviceId="TR_01"
+       [activeAlarms]="getAlarmsFor('TR_01')"
+       [attr.transform]="'translate(200, 200)'">
+    </g>
+
+    <g app-transformer-widget
+       deviceId="TR_02"
+       [activeAlarms]="getAlarmsFor('TR_02')"
+       [attr.transform]="'translate(400, 200)'">
+    </g>
+
+    <g app-transformer-widget
+       deviceId="TR_03"
+       [activeAlarms]="getAlarmsFor('TR_03')"
+       [attr.transform]="'translate(600, 200)'">
+    </g>
+  </svg>
+</div>

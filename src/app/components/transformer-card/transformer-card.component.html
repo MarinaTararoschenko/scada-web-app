@@ -1,0 +1,29 @@
+<div class="card" [style.border]="cardBorder()">
+  <h4 class="card__title">{{ deviceId() }}</h4>
+
+  <div class="card__metric-row">
+    <span class="card__metric-label">Ток:</span>
+    <span class="card__metric-value" [style.color]="ampColor()">
+      {{ ampValue() }} <span class="unit">А</span>
+    </span>
+  </div>
+
+  <div class="card__metric-row">
+    <span class="card__metric-label">Напряжение:</span>
+    <span class="card__metric-value" [style.color]="voltColor()">
+      {{ voltValue() }} <span class="card__metric-unit">кВ</span>
+    </span>
+  </div>
+
+  <div class="card__alarm-placeholder">
+    @if (hasShortCircuit()) {
+      <span class="card__alarm-text critical">🔴 КЗ</span>
+    } @else if (hasOverload()) {
+      <span class="card__alarm-text warning">⚠️ ПЕРЕГРУЗ</span>
+    } @else if (hasOvervoltage()) {
+      <span class="card__alarm-text critical">🔴 ПЕРЕНАПРЯЖЕНИЕ</span>
+    } @else if (hasUndervoltage()) {
+      <span class="card__alarm-text warning">⚠️ НЕДОНАПРЯЖЕНИЕ</span>
+    }
+  </div>
+</div>

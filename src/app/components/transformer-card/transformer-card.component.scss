@@ -1,0 +1,59 @@
+.card {
+  background: var(--ws-background-color-neutral-soft);
+  padding: 15px;
+  border-radius: 8px;
+  width: 250px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s;
+
+  &__title {
+    margin-top: 0;
+    color:  var(--ws-text-color-neutral-soft);
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  &__metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  &__metric-label {
+    color:  var(--ws-text-color-neutral-soft);
+    font-size: 14px;
+  }
+
+  &__metric-value {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &__unit {
+    font-size: 14px;
+  }
+
+  &__alarm-placeholder {
+    margin-top: auto;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__alarm-text {
+    font-weight: bold;
+    font-size: 12px;
+
+    &.critical {
+      color: var(--ws-text-color-error-default);
+    }
+
+    &.warning {
+      color: var(--ws-text-color-warning-default);
+    }
+  }
+}

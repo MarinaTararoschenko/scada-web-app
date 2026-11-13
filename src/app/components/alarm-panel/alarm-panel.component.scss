@@ -1,0 +1,51 @@
+.alarm {
+  &__container {
+    margin-top: 20px;
+    background: var(--ws-background-color-error-high);
+    border: 1px solid var(--ws-background-color-error-default);
+    border-radius: 8px;
+    padding: 15px;
+  }
+
+  &__header {
+    color: var(--ws-text-color-error-default);
+    margin-top: 0;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: var(--ws-background-color-neutral-soft);
+    border-left: 4px solid;
+  }
+
+  &__severity {
+    font-weight: bold;
+  }
+}
+
+.ackBtn {
+  background: var(--ws-background-color-neutral-softest);
+  color: var(--ws-text-color-neutral-contrast);
+  border: 1px solid var(--ws-border-color-neutral-soft);
+  padding: 5px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+
+  &:hover {
+    background: var(--ws-background-color-neutral-action-hover);
+  }
+}
+
+.ackText {
+  color: var(--ws-text-color-neutral-default);
+  font-size: 12px;
+}

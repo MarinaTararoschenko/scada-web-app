@@ -1,0 +1,47 @@
+<div class="main">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h1>Web-SCADA Консоль Инженера</h1>
+      <p>Частота обновления UI: до 10 кадров/сек</p>
+    </div>
+
+    <div class="status"
+      [style.background]="connectionStatus() === 'connected' ? '#1b3a24' : '#3a1b1b'"
+      [style.color]="connectionStatus() === 'connected' ? '#4caf50' : '#ff5252'">
+      {{ connectionStatus() === 'connected' ? '🟢 Сервер на связи' : '🔴 Нет связи с сервером' }}
+    </div>
+  </div>
+
+  <!-- Alarm panel -->
+  <app-alarm-panel
+    [alarms]="alarms()"
+    (acknowledge)="acknowledgeAlarm($event.id, $event.deviceId)">
+  </app-alarm-panel>
+
+  <!-- Transformer cards -->
+  <div class="wrapper">
+    @for (deviceId of ['TR_01', 'TR_02', 'TR_03']; track deviceId) {
+      <app-transformer-card [deviceId]="deviceId" [alarmsMap]="alarmsMap()"></app-transformer-card>
+    }
+  </div>
+
+  <!-- Schema -->
+  <app-svg-schema [alarmsMap]="alarmsMap()"></app-svg-schema>
+
+  <!-- Debugger -->
+  <div class="debugger">
+    <div class="debugger__container">
+      <h4>📊 Отладчик буфера (Тегов в памяти: {{ tagsCount() }})</h4>
+      <button (click)="toggleDebug()">
+        {{ showDebug() ? 'Скрыть JSON' : 'Показать JSON' }}
+      </button>
+    </div>
+
+    @if (showDebug()) {
+      <pre>
+        {{ latestTagsJson() }}</pre>
+      }
+  </div>
+</div>

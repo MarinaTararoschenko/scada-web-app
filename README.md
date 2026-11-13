@@ -1,27 +1,46 @@
-# ScadaWebApp
+# High-Performance Web-SCADA (Angular + RxJS + Signals)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.1.
+A prototype of an architectural core for web dispatching (Web-SCADA / IIoT). It demonstrates processing a high-frequency data stream (100 packets/sec) and rendering the UI without blocking the browser's main thread.
 
-## Development server
+## ✨ Key Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **WebSocket outside Angular Zone:** Using `NgZone.runOutsideAngular()` prevents global Change Detection from triggering on every incoming message.
+- **Granular Signals:** Instead of one huge state, a `Map<string, WritableSignal>` is used. Updating the `TR_01_AMP` tag recalculates only the components that depend on it.
+- **Data Batching:** The high-frequency stream is buffered and flushed to the UI strictly every 100 ms (10 frames/sec).
+- **Alarm Management:**
+  - **Hysteresis:** Separate conditions for triggering and resetting (prevents "flickering").
+  - **Acknowledgment:** The operator must acknowledge the alarm. An alarm that has passed but was not acknowledged remains on the screen.
+- **SVG Mimic Diagram:** An interactive substation diagram reflecting the state of breakers and lines in real time.
+- **ISA-101 Principles:** Color coding (green — normal, yellow — warning, red — critical alarm).
 
-## Code scaffolding
+## 🛠 Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Frontend:** Angular 19+ (Standalone Components, Signals, `input()`, `output()`, Routing).
+- **Reactive:** RxJS 7+ (`scan`, `merge`).
+- **Backend (Mock):** Node.js, `ws` (telemetry gateway emulator).
 
-## Build
+## 🏃‍♂️ Quick Start
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Install all dependencies (including `ws` for the server) in the project root:
 
-## Running unit tests
+    npm install
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. Run the frontend and mock server with a single command:
 
-## Running end-to-end tests
+    npm start
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. Open `http://localhost:4200` (you will be redirected to `/engineer-console`).
 
-## Further help
+## 📂 Structure
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- `tools/mock-server` — Node.js server emulating tags and faults.
+- `src/app/services/scada-data.service.ts` — core logic (WebSocket, batching, signals, alarms).
+- `src/app/models/` — data models and alarm rule configuration (Data-Driven).
+- `src/app/components/` — UI (Console, Alarm Panel, Cards, SVG Diagram).
+
+## 📈 Roadmap
+
+- [x] Core on Signals + RxJS (batching, hysteresis, acknowledgment).
+- [x] UI: instrument cards, alarm panel, SVG mimic diagram.
+- [ ] Integration of historical trend charts (Apache ECharts).
+- [ ] Adding authorization (opening/closing WebSocket per session).
