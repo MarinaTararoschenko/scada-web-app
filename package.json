@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently \"npm run server\" \"ng serve\"",
+    "server": "node tools/mock-server/server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -27,6 +28,7 @@
     "@angular/cli": "^19.2.27",
     "@angular/compiler-cli": "^19.2.25",
     "@types/jasmine": "~5.1.0",
+    "concurrently": "^9.2.5",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
